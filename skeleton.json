@@ -1,0 +1,23 @@
+{
+    "id": null,
+    "destination_id": null,
+    "name": null,
+    "location": {
+      "lat": null,
+      "lng": null,
+      "address": null,
+      "city": null,
+      "country": null
+    },
+    "description": null,
+    "amenities": {
+      "general": [],
+      "room": []
+    },
+    "images": {
+      "rooms": [],
+      "site": [],
+      "amenities": []
+    },
+    "booking_conditions": []
+}
