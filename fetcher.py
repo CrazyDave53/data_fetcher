@@ -16,7 +16,7 @@ class SupplierFetcher:
             print(f"Error fetching data from {self.supplier_url}: {e}")
             return []  # Return an empty list in case of error
 
-# HotelDataFetcher Class to manage fetching and aggregating data
+# HotelDataFetcher Class to manage fetching data
 class HotelDataFetcher:
     def __init__(self, config_path):
         self.config_path = config_path
