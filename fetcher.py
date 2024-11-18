@@ -3,8 +3,10 @@ import requests  # Use requests to fetch data from URLs
 
 # Simple Fetcher Class to handle individual suppliers
 class SupplierFetcher:
-    def __init__(self, supplier_url):
+    def __init__(self, supplier_url, supplier_name, supplier_mapping):
         self.supplier_url = supplier_url
+        self.supplier_name = supplier_name
+        self.supplier_mapping = supplier_mapping
 
     def fetch(self):
         # For now, assume the URL returns a JSON response
@@ -28,12 +30,17 @@ class HotelDataFetcher:
             config = json.load(file)
 
         # Create fetchers for each supplier
-        self.fetchers = [SupplierFetcher(supplier["url"]) for supplier in config["suppliers"]]
+        self.fetchers = [SupplierFetcher(supplier["url"], supplier["name"], supplier["mapping_file"]) for supplier in config["suppliers"]]
 
     def fetch_all_data(self):
         # Aggregate results from all suppliers
         all_data = []
         for fetcher in self.fetchers:
             data = fetcher.fetch()  # Fetch data from each supplier
-            all_data.extend(data)   # Add the fetched data to the aggregated list
+            all_data.append({"supplier": fetcher.supplier_name, "hotels": data})
+        for data in all_data:
+            print("Supplier: ", data["supplier"])
+            # Print first field of each hotel dictionary
+            for hotel in data["hotels"]:
+                print("Hotel Field: ", list(hotel.keys())[0])
         return all_data

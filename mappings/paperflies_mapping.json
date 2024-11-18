@@ -1,0 +1,24 @@
+{
+    "id": "hotel_id",
+    "destination_id": "destination_id",
+    "name": "hotel_name",
+    "location": {
+      "lat": null,
+      "lng": null,
+      "address": "location.address",
+      "city": null,
+      "country": "location.country"
+    },
+    "description": "details",
+    "amenities": {
+      "general": "amenities.general",
+      "room": "amenities.room"
+    },
+    "images": {
+      "rooms": "images.rooms",
+      "site": "images.site",
+      "amenities": null
+    },
+    "booking_conditions": "booking_conditions"
+  }
+  

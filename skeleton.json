@@ -1,15 +1,15 @@
 {
     "id": null,
     "destination_id": null,
-    "name": null,
+    "name": ["mode", "longest"],
     "location": {
-      "lat": null,
-      "lng": null,
-      "address": null,
-      "city": null,
-      "country": null
+      "lat": ["mode", "longest"],
+      "lng": ["mode", "longest"],
+      "address": ["mode", "longest"],
+      "city": ["mode", "longest"],
+      "country": ["mode", "longest"]
     },
-    "description": null,
+    "description": ["concat"],
     "amenities": {
       "general": [],
       "room": []

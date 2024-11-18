@@ -1,7 +1,19 @@
 {
     "suppliers": [
-        { "name": "acme", "url": "https://5f2be0b4ffc88500167b85a0.mockapi.io/suppliers/acme" },
-        { "name": "patagonia", "url": "https://5f2be0b4ffc88500167b85a0.mockapi.io/suppliers/patagonia" },
-        { "name": "paperflies", "url": "https://5f2be0b4ffc88500167b85a0.mockapi.io/suppliers/paperflies" }
+        {
+            "name": "acme",
+            "url": "https://5f2be0b4ffc88500167b85a0.mockapi.io/suppliers/acme",
+            "mapping_file": "acme_mapping.json"
+        },
+        {
+            "name": "patagonia",
+            "url": "https://5f2be0b4ffc88500167b85a0.mockapi.io/suppliers/patagonia",
+            "mapping_file": "patagonia_mapping.json"
+        },
+        {
+            "name": "paperflies",
+            "url": "https://5f2be0b4ffc88500167b85a0.mockapi.io/suppliers/paperflies",
+            "mapping_file": "paperflies_mapping.json"
+        }
     ]
 }

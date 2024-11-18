@@ -1,0 +1,24 @@
+{
+    "id": "Id",
+    "destination_id": "DestinationId",
+    "name": "Name",
+    "location": {
+      "lat": "Latitude",
+      "lng": "Longitude",
+      "address": "Address",
+      "city": "City",
+      "country": "Country"
+    },
+    "description": "Description",
+    "amenities": {
+      "general": "Facilities",
+      "room": null
+    },
+    "images": {
+      "rooms": null,
+      "site": null,
+      "amenities": null
+    },
+    "booking_conditions": null
+  }
+  
