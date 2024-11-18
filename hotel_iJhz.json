@@ -36,7 +36,42 @@
       "iron"
     ]
   },
-  "images": {},
+  "images": {
+    "rooms": [
+      {
+        "url": "https://d2ey9sqrvkqdfs.cloudfront.net/0qZF/2.jpg",
+        "description": "Double room"
+      },
+      {
+        "url": "https://d2ey9sqrvkqdfs.cloudfront.net/0qZF/4.jpg",
+        "description": "Bathroom"
+      },
+      {
+        "link": "https://d2ey9sqrvkqdfs.cloudfront.net/0qZF/2.jpg",
+        "caption": "Double room"
+      },
+      {
+        "link": "https://d2ey9sqrvkqdfs.cloudfront.net/0qZF/3.jpg",
+        "caption": "Double room"
+      }
+    ],
+    "amenities": [
+      {
+        "url": "https://d2ey9sqrvkqdfs.cloudfront.net/0qZF/0.jpg",
+        "description": "RWS"
+      },
+      {
+        "url": "https://d2ey9sqrvkqdfs.cloudfront.net/0qZF/6.jpg",
+        "description": "Sentosa Gateway"
+      }
+    ],
+    "site": [
+      {
+        "link": "https://d2ey9sqrvkqdfs.cloudfront.net/0qZF/1.jpg",
+        "caption": "Front"
+      }
+    ]
+  },
   "booking_conditions": [
     "All children are welcome. One child under 12 years stays free of charge when using existing beds. One child under 2 years stays free of charge in a child's cot/crib. One child under 4 years stays free of charge when using existing beds. One older child or adult is charged SGD 82.39 per person per night in an extra bed. The maximum number of children's cots/cribs in a room is 1. There is no capacity for extra beds in the room.",
     "Pets are not allowed.",

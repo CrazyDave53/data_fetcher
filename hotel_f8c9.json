@@ -9,7 +9,7 @@
     "city": "Tokyo",
     "country": "Japan"
   },
-  "description": "This sleek high-rise property is 10 minutes' walk from Shinjuku train station, 6 minutes' walk from the Tokyo Metropolitan Government Building and 3 km from Yoyogi Park. The polished rooms offer Wi-Fi and flat-screen TVs, plus minibars, sitting areas, and tea and coffeemaking facilities. Suites add living rooms, and access to a club lounge serving breakfast and cocktails. A free shuttle to Shinjuku station is offered. There's a chic Chinese restaurant, a sushi bar, and a grill restaurant with an open kitchen, as well as an English pub and a hip cocktail lounge. Other amenities include a gym, rooftop tennis courts, and a spa with an indoor pool., Hilton Tokyo is located in Shinjuku, the heart of Tokyo's business, shopping and entertainment district, and is an ideal place to experience modern Japan. A complimentary shuttle operates between the hotel and Shinjuku station and the Tokyo Metro subway is connected to the hotel. Relax in one of the modern Japanese-style rooms and admire stunning city views. The hotel offers WiFi and internet access throughout all rooms and public space.",
+  "description": "Hilton Tokyo is located in Shinjuku, the heart of Tokyo's business, shopping and entertainment district, and is an ideal place to experience modern Japan. A complimentary shuttle operates between the hotel and Shinjuku station and the Tokyo Metro subway is connected to the hotel. Relax in one of the modern Japanese-style rooms and admire stunning city views. The hotel offers WiFi and internet access throughout all rooms and public space., This sleek high-rise property is 10 minutes' walk from Shinjuku train station, 6 minutes' walk from the Tokyo Metropolitan Government Building and 3 km from Yoyogi Park. The polished rooms offer Wi-Fi and flat-screen TVs, plus minibars, sitting areas, and tea and coffeemaking facilities. Suites add living rooms, and access to a club lounge serving breakfast and cocktails. A free shuttle to Shinjuku station is offered. There's a chic Chinese restaurant, a sushi bar, and a grill restaurant with an open kitchen, as well as an English pub and a hip cocktail lounge. Other amenities include a gym, rooftop tennis courts, and a spa with an indoor pool.",
   "amenities": {
     "general": [
       "Pool",
@@ -29,7 +29,38 @@
       "hair dryer"
     ]
   },
-  "images": {},
+  "images": {
+    "rooms": [
+      {
+        "url": "https://d2ey9sqrvkqdfs.cloudfront.net/YwAr/i10_m.jpg",
+        "description": "Suite"
+      },
+      {
+        "url": "https://d2ey9sqrvkqdfs.cloudfront.net/YwAr/i11_m.jpg",
+        "description": "Suite - Living room"
+      },
+      {
+        "link": "https://d2ey9sqrvkqdfs.cloudfront.net/YwAr/i1_m.jpg",
+        "caption": "Suite"
+      },
+      {
+        "link": "https://d2ey9sqrvkqdfs.cloudfront.net/YwAr/i15_m.jpg",
+        "caption": "Double room"
+      }
+    ],
+    "amenities": [
+      {
+        "url": "https://d2ey9sqrvkqdfs.cloudfront.net/YwAr/i57_m.jpg",
+        "description": "Bar"
+      }
+    ],
+    "site": [
+      {
+        "link": "https://d2ey9sqrvkqdfs.cloudfront.net/YwAr/i55_m.jpg",
+        "caption": "Bar"
+      }
+    ]
+  },
   "booking_conditions": [
     "All children are welcome. One child under 6 years stays free of charge when using existing beds. There is no capacity for extra beds in the room.",
     "Pets are not allowed.",

@@ -15,24 +15,9 @@
       "room": null
     },
     "images": {
-      "rooms": [
-        {
-          "url": "images.rooms.url",
-          "description": "images.rooms.description"
-        }
-      ],
-      "site": [
-        {
-          "url": "images.site.url",
-          "description": "images.site.description"
-        }
-      ],
-      "amenities": [
-        {
-          "url": "images.amenities.url",
-          "description": "images.amenities.description"
-        }
-      ]
+      "rooms": "images.rooms",
+      "site": null,
+      "amenities": "images.amenities"
     },
     "booking_conditions": null
   }
