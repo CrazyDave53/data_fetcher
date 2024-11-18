@@ -8,6 +8,9 @@ class MappingProcessor:
     @staticmethod
     def apply_mapping(raw_data: Dict[str, Any], mapping: Dict[str, Any]) -> Dict[str, Any]:
         def get_nested_value(data, keys):
+            """
+            Extract a nested value from raw_data based on a dot-separated path.
+            """
             if not keys:  # If the key is None or empty, return None
                 return None
             try:
@@ -21,6 +24,9 @@ class MappingProcessor:
                 return None
 
         def set_nested_value(output, keys, value):
+            """
+            Create a nested structure in `output` based on the dot-separated `keys` path.
+            """
             keys = keys.split('.')
             for key in keys[:-1]:
                 output = output.setdefault(key, {})
@@ -29,15 +35,18 @@ class MappingProcessor:
         transformed_data = {}
         for skeleton_key, supplier_key in mapping.items():
             if isinstance(supplier_key, dict):
+                # Recursively apply mapping for nested structures
                 transformed_data[skeleton_key] = MappingProcessor.apply_mapping(
                     raw_data, supplier_key
                 )
-            else:
+            elif supplier_key:  # If supplier_key is not None or empty
                 value = get_nested_value(raw_data, supplier_key)
                 if value is not None:
                     set_nested_value(transformed_data, skeleton_key, value)
 
         return transformed_data
+
+
 
 class SkeletonLoader:
     """ A utility class for loading and caching the skeleton """

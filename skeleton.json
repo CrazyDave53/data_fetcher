@@ -11,8 +11,8 @@
     },
     "description": ["concat"],
     "amenities": {
-      "general": [],
-      "room": []
+      "general": ["remove_duplicates"],
+      "room": ["remove_duplicates"]
     },
     "images": {
       "rooms": [],

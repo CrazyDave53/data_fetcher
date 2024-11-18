@@ -3,7 +3,10 @@
   "destination_id": 1122,
   "name": "Hilton Shinjuku Tokyo",
   "location": {
+    "lat": 35.6926,
+    "lng": 139.690965,
     "address": "160-0023, SHINJUKU-KU, 6-6-2 NISHI-SHINJUKU, JAPAN",
+    "city": "Tokyo",
     "country": "Japan"
   },
   "description": "Hilton Tokyo is located in Shinjuku, the heart of Tokyo's business, shopping and entertainment district, and is an ideal place to experience modern Japan. A complimentary shuttle operates between the hotel and Shinjuku station and the Tokyo Metro subway is connected to the hotel. Relax in one of the modern Japanese-style rooms and admire stunning city views. The hotel offers WiFi and internet access throughout all rooms and public space., This sleek high-rise property is 10 minutes' walk from Shinjuku train station, 6 minutes' walk from the Tokyo Metropolitan Government Building and 3 km from Yoyogi Park. The polished rooms offer Wi-Fi and flat-screen TVs, plus minibars, sitting areas, and tea and coffeemaking facilities. Suites add living rooms, and access to a club lounge serving breakfast and cocktails. A free shuttle to Shinjuku station is offered. There's a chic Chinese restaurant, a sushi bar, and a grill restaurant with an open kitchen, as well as an English pub and a hip cocktail lounge. Other amenities include a gym, rooftop tennis courts, and a spa with an indoor pool.",
@@ -15,7 +18,8 @@
       "DryCleaning",
       " Breakfast",
       "Bar",
-      "BathTub"
+      "BathTub",
+      "indoor pool"
     ],
     "room": [
       "tv",

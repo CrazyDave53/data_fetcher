@@ -2,7 +2,18 @@ from typing import Type, Dict
 from abc import ABC, abstractmethod
 from collections import Counter
 
+
+
+
 class AggregationStrategy(ABC):
+
+    def _string_compare(self, a, b):
+        # Clean up the strings
+        a = a.lower().strip().replace(" ", "")
+        b = b.lower().strip().replace(" ", "")
+
+        return a == b
+
     @abstractmethod
     def aggregate(self, candidates: list, history: list):
         """
@@ -47,6 +58,38 @@ class ConcatenateValueStrategy(AggregationStrategy):
         # Remove duplicates
         candidates = list(set(candidates))
         return [", ".join(str(val) for val in candidates)]
+
+class RemoveDuplicatesStrategy(AggregationStrategy):
+    def aggregate(self, candidates: list, history: list):
+        """
+        Remove duplicates from the candidates.
+        """
+        def remove_duplicates(candidates):
+            result = []
+            for val in candidates:
+                appeared = False
+                for res in result:
+                    if self._string_compare(val, res):
+                        appeared = True
+                        break
+                if not appeared:
+                    result.append(val)
+            return result
+        # Remove duplicates
+        combined_history = []
+        for hist in history:
+            combined_history.extend(hist)
+        return [remove_duplicates(combined_history)]
+        
+
+    
+class CombineValueStrategy(AggregationStrategy):
+    def aggregate(self, candidates: list, history: list):
+        """
+        Combine all values from the candidates.
+        """
+        return ["".join(str(val) for val in candidates)]
+    
     
 # Registry mapping strategy names to strategy classes
 STRATEGY_REGISTRY: Dict[str, Type[AggregationStrategy]] = {
@@ -54,6 +97,7 @@ STRATEGY_REGISTRY: Dict[str, Type[AggregationStrategy]] = {
     "longest": LongestValueStrategy,
     "range": RangeValueStrategy,
     "concat": ConcatenateValueStrategy,
+    "remove_duplicates": RemoveDuplicatesStrategy,
 }
 
 
