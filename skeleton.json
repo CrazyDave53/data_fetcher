@@ -1,23 +1,80 @@
 {
-    "id": null,
-    "destination_id": null,
-    "name": ["mode", "longest"],
-    "location": {
-      "lat": ["mode", "longest"],
-      "lng": ["mode", "longest"],
-      "address": ["mode", "longest"],
-      "city": ["mode", "longest"],
-      "country": ["mode", "longest"]
+  "id": null,
+  "destination_id": null,
+  "name": {
+    "value": null,
+    "strategy": ["mode", "longest"]
+  },
+  "location": {
+    "lat": {
+      "value": null,
+      "strategy": ["mode", "longest"]
     },
-    "description": ["concat"],
+    "lng": {
+      "value": null,
+      "strategy": ["mode", "longest"]
+    },
+    "address": {
+      "value": null,
+      "strategy": ["mode", "longest"]
+    },
+    "city": {
+      "value": null,
+      "strategy": ["mode", "longest"]
+    },
+    "country": {
+      "value": null,
+      "strategy": ["mode", "longest"]
+    }
+  },
+  "description": {
+    "value": null,
+    "strategy": ["concat"]
+  },
+  "amenities": {
+    "general": {
+      "value": null,
+      "strategy": ["remove_duplicates"]
+    },
+    "room": {
+      "value": null,
+      "strategy": ["remove_duplicates"]
+    }
+  },
+  "images": {
+    "rooms": {
+      "value": [{
+        "url": null,
+        "description": {
+          "value": null,
+          "strategy": []
+        }
+      }],
+      "strategy": ["remove_invalid_image", "remove_duplicates"]
+    },
+    "site": {
+      "value": [{
+        "url": null,
+        "description": {
+          "value": null,
+          "strategy": []
+        }
+      }],
+      "strategy": ["remove_invalid_image", "remove_duplicates"]
+    },
     "amenities": {
-      "general": ["remove_duplicates"],
-      "room": ["remove_duplicates"]
-    },
-    "images": {
-      "rooms": [],
-      "site": [],
-      "amenities": []
-    },
-    "booking_conditions": []
+      "value": [{
+        "url": null,
+        "description": {
+          "value": null,
+          "strategy": []
+        }
+      }],
+      "strategy": ["remove_invalid_image", "remove_duplicates"]
+    }
+  },
+  "booking_conditions": {
+    "value": [],
+    "strategy": ["remove_duplicates"]
+  }
 }

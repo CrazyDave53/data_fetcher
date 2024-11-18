@@ -68,28 +68,25 @@ class SkeletonLoader:
         if cls._skeleton is None:
             raise ValueError("Skeleton has not been loaded yet!")
         
-        # strategies = {}
-        # cls._traverse_and_collect(cls._skeleton, strategies, [])
-        # print("Extracted strategies:", strategies)
         if cls._strategies is None:
             strategies = {}
             cls._traverse_and_collect(cls._skeleton, strategies, [])
-            print("Extracted strategies:", strategies)
+            for key, value in strategies.items():
+                print(f"Field: {key}, Strategies: {value}")
             cls._strategies = strategies
-        return strategies
+        return cls._strategies
 
     @classmethod
     def _traverse_and_collect(cls, current: Any, strategies: Dict[str, list], path: list):
         if isinstance(current, dict):
             for key, value in current.items():
-                cls._traverse_and_collect(value, strategies, path + [key])
-        elif isinstance(current, list):
-            field_path = ".".join(path)
-            if all(isinstance(item, str) for item in current):
-                try:
-                    strategies[field_path] = [STRATEGY_REGISTRY[strategy]() for strategy in current]
-                except KeyError as e:
-                    raise ValueError(f"Strategy '{e.args[0]}' not found in registry for field '{field_path}'")
+                if isinstance(value, list) and all(isinstance(item, str) for item in value):
+                    # Handle the case where value is a list of strategies (strings)
+                    field_path = ".".join(path + [key])
+                    strategies[field_path] = [STRATEGY_REGISTRY[strategy]() for strategy in value]
+                elif isinstance(value, dict):
+                    # Recursively traverse nested dictionaries
+                    cls._traverse_and_collect(value, strategies, path + [key])
 
 class DataProcessor:
     """ A utility class for processing raw data against a skeleton """
