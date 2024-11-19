@@ -58,14 +58,17 @@ class ConcatenateValueStrategy(AggregationStrategy):
 
 class RemoveDuplicatesStrategy(AggregationStrategy):
 
+    def _to_image_format(self, image):
+        if isinstance(image, dict):
+            keys = list(image.keys())
+            return {"url": image[keys[0]], "description": image[keys[1]]}
+        return image
+
     def aggregate(self, candidates: list, history: list):
         """
         Remove duplicates from the candidates.
         """
         def _compare_images(url_1, url_2):
-            print("Comparing images...")
-            print("URL 1: ", url_1)
-            print("URL 2: ", url_2)
             # Fetch images from URLs
             img_a = Image.open(requests.get(url_1, stream=True).raw)
             img_b = Image.open(requests.get(url_2, stream=True).raw)
@@ -83,9 +86,6 @@ class RemoveDuplicatesStrategy(AggregationStrategy):
 
 
         def _compare(a, b):
-            print("Comparing...")
-            print("A: ", a)
-            print("B: ", b)
             # a and b are strings
             if a == b:
                 return True
@@ -95,6 +95,10 @@ class RemoveDuplicatesStrategy(AggregationStrategy):
                 b = b.lower().strip().replace(" ", "")
                 return a == b
             # a and b are image dictionaries
+            # Change the first key to "url" if the first key is something else
+            a = self._to_image_format(a)
+            b = self._to_image_format(b)
+
             if isinstance(a, dict) and isinstance(b, dict) and "url" in a and "url" in b:
                 # Load the images from the URLs
                 try:
@@ -106,6 +110,7 @@ class RemoveDuplicatesStrategy(AggregationStrategy):
         def _remove_duplicates(candidates):
             result = []
             for val in candidates:
+                val = self._to_image_format(val)
                 appeared = False
                 for res in result:
                     if _compare(val, res):

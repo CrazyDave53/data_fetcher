@@ -67,6 +67,7 @@ class HotelData:
                     # No strategies, just copy the list over
                     current_data[current_path[-1]] = current_raw
 
+
             else:
                 # Base case for non-dict values
                 field_path = ".".join(current_path)

@@ -7,18 +7,28 @@ from typing import Dict, Any
 class MappingProcessor:
     @staticmethod
     def apply_mapping(raw_data: Dict[str, Any], mapping: Dict[str, Any]) -> Dict[str, Any]:
+        """
+        Apply a mapping to raw_data, transforming it to match the structure of the skeleton.
+        """
         def get_nested_value(data, keys):
             """
             Extract a nested value from raw_data based on a dot-separated path.
+            Handles lists of dictionaries.
             """
-            if not keys:  # If the key is None or empty, return None
+            if not keys:
                 return None
+
             try:
-                for key in keys.split('.'):
-                    if isinstance(data, dict):
+                keys = keys.split('.')
+                for key in keys:
+                    if isinstance(data, list):
+                        # Handle lists of dictionaries
+                        data = [item.get(key) for item in data if isinstance(item, dict)]
+                    elif isinstance(data, dict):
                         data = data.get(key, None)
                     else:
                         return None
+
                 return data
             except Exception:
                 return None
@@ -26,6 +36,7 @@ class MappingProcessor:
         def set_nested_value(output, keys, value):
             """
             Create a nested structure in `output` based on the dot-separated `keys` path.
+            Handles lists of dictionaries.
             """
             keys = keys.split('.')
             for key in keys[:-1]:
@@ -36,15 +47,23 @@ class MappingProcessor:
         for skeleton_key, supplier_key in mapping.items():
             if isinstance(supplier_key, dict):
                 # Recursively apply mapping for nested structures
-                transformed_data[skeleton_key] = MappingProcessor.apply_mapping(
-                    raw_data, supplier_key
-                )
-            elif supplier_key:  # If supplier_key is not None or empty
+                transformed_data[skeleton_key] = MappingProcessor.apply_mapping(raw_data, supplier_key)
+            elif isinstance(supplier_key, str):
+                # Handle standard mappings
                 value = get_nested_value(raw_data, supplier_key)
                 if value is not None:
                     set_nested_value(transformed_data, skeleton_key, value)
+            elif isinstance(supplier_key, list) and all(isinstance(item, str) for item in supplier_key):
+                # Handle mappings that result in lists (e.g., images with multiple paths)
+                extracted_list = [
+                    get_nested_value(raw_data, path)
+                    for path in supplier_key
+                ]
+                extracted_list = [item for item in extracted_list if item is not None]
+                set_nested_value(transformed_data, skeleton_key, extracted_list)
 
         return transformed_data
+
 
 
 
@@ -60,6 +79,8 @@ class SkeletonLoader:
             print("Loading skeleton from file...")
             with open(skeleton_path, 'r') as file:
                 cls._skeleton = json.load(file)
+        for key, value in cls._skeleton.items():
+            print(f"Field: {key}, Value: {value}")
         return cls._skeleton
 
     @classmethod

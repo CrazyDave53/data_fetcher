@@ -34,30 +34,30 @@
   "images": {
     "rooms": [
       {
-        "link": "https://d2ey9sqrvkqdfs.cloudfront.net/Sjym/i93_m.jpg",
-        "caption": "Double room"
+        "url": "https://d2ey9sqrvkqdfs.cloudfront.net/Sjym/i93_m.jpg",
+        "description": "Double room"
       },
       {
-        "link": "https://d2ey9sqrvkqdfs.cloudfront.net/Sjym/i94_m.jpg",
-        "caption": "Bathroom"
+        "url": "https://d2ey9sqrvkqdfs.cloudfront.net/Sjym/i94_m.jpg",
+        "description": "Bathroom"
       }
     ],
     "site": [
       {
-        "link": "https://d2ey9sqrvkqdfs.cloudfront.net/Sjym/i1_m.jpg",
-        "caption": "Restaurant"
+        "url": "https://d2ey9sqrvkqdfs.cloudfront.net/Sjym/i1_m.jpg",
+        "description": "Restaurant"
       },
       {
-        "link": "https://d2ey9sqrvkqdfs.cloudfront.net/Sjym/i2_m.jpg",
-        "caption": "Hotel Exterior"
+        "url": "https://d2ey9sqrvkqdfs.cloudfront.net/Sjym/i2_m.jpg",
+        "description": "Hotel Exterior"
       },
       {
-        "link": "https://d2ey9sqrvkqdfs.cloudfront.net/Sjym/i5_m.jpg",
-        "caption": "Entrance"
+        "url": "https://d2ey9sqrvkqdfs.cloudfront.net/Sjym/i5_m.jpg",
+        "description": "Entrance"
       },
       {
-        "link": "https://d2ey9sqrvkqdfs.cloudfront.net/Sjym/i24_m.jpg",
-        "caption": "Bar"
+        "url": "https://d2ey9sqrvkqdfs.cloudfront.net/Sjym/i24_m.jpg",
+        "description": "Bar"
       }
     ]
   },
