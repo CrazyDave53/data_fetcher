@@ -61,7 +61,7 @@ class RemoveDuplicatesStrategy(AggregationStrategy):
     def _to_image_format(self, image):
         if isinstance(image, dict):
             keys = list(image.keys())
-            return {"url": image[keys[0]], "description": image[keys[1]]}
+            return {"link": image[keys[0]], "description": image[keys[1]]}
         return image
 
     def aggregate(self, candidates: list, history: list):
@@ -99,10 +99,10 @@ class RemoveDuplicatesStrategy(AggregationStrategy):
             a = self._to_image_format(a)
             b = self._to_image_format(b)
 
-            if isinstance(a, dict) and isinstance(b, dict) and "url" in a and "url" in b:
-                # Load the images from the URLs
+            if isinstance(a, dict) and isinstance(b, dict) and "link" in a and "link" in b:
+                # Load the images from the URLS
                 try:
-                    return _compare_images(a["url"], b["url"])
+                    return _compare_images(a["link"], b["link"])
                 except:
                     return a == b
             return a == b
@@ -143,7 +143,7 @@ class RemoveInvalidImageStrategy(AggregationStrategy):
         """
         def _is_valid_image(image):
             try:
-                response = requests.get(image["url"])
+                response = requests.get(image["link"])
                 if response.status_code == 200:
                     return True
                 return False

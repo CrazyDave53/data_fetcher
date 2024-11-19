@@ -15,7 +15,6 @@ class SupplierFetcher:
             response.raise_for_status()  # Will raise an error for bad status codes
             return response.json()  # Return raw JSON data
         except requests.RequestException as e:
-            print(f"Error fetching data from {self.supplier_url}: {e}")
             return []  # Return an empty list in case of error
 
 # HotelDataFetcher Class to manage fetching data
@@ -38,9 +37,4 @@ class HotelDataFetcher:
         for fetcher in self.fetchers:
             data = fetcher.fetch()  # Fetch data from each supplier
             all_data.append({"supplier": fetcher.supplier_name, "hotels": data})
-        for data in all_data:
-            print("Supplier: ", data["supplier"])
-            # Print first field of each hotel dictionary
-            for hotel in data["hotels"]:
-                print("Hotel Field: ", list(hotel.keys())[0])
         return all_data

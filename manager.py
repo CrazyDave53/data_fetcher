@@ -3,6 +3,8 @@ from hotel import HotelData
 from process_data import SkeletonLoader, DataProcessor, MappingProcessor
 import json
 from typing import Dict, Any
+import argparse
+import sys
 
 
 class HotelManager:
@@ -17,7 +19,6 @@ class HotelManager:
         all_data = self.fetcher.fetch_all_data()
 
         for supplier_data in all_data:
-            print("Type of supplier_data: ", type(supplier_data))
             supplier_name = supplier_data.get("supplier")
             mapping_path = f"mappings/{supplier_name}_mapping.json"
 
@@ -37,14 +38,76 @@ class HotelManager:
         else:
             self.hotels[hotel_id]._update(raw_data)
 
-# Test
+    def get_appropriate_hotels(self, hotel_ids, destination_ids):
+        appropriate_hotels = []
+        for hotel_id, hotel_data in self.hotels.items():
+            if hotel_ids and hotel_id not in hotel_ids:
+                continue
+            if destination_ids and hotel_data.data.get("destination_id") not in destination_ids:
+                continue
+            appropriate_hotels.append(hotel_data.data)
+        return appropriate_hotels
+    
+    def get_hotel_by_ids(self, hotel_ids):
+        appropriate_hotels = []
+        for hotel_id, hotel_data in self.hotels.items():
+            if hotel_id in hotel_ids:
+                appropriate_hotels.append(hotel_data.data)
+        return appropriate_hotels
+    
+    def get_hotel_by_destination_ids(self, destination_ids):
+        appropriate_hotels = []
+        for hotel_id, hotel_data in self.hotels.items():
+            if hotel_data.data.get("destination_id") in destination_ids:
+                appropriate_hotels.append(hotel_data.data)
+        return appropriate_hotels
+    
+    def get_all_hotels(self):
+        return [hotel_data.data for hotel_data in self.hotels.values()]
 
-hotel_manager = HotelManager("config.json", "skeleton.json")
-hotel_manager.fetch_and_process()
-#print all hotels
-for hotel_id, hotel in hotel_manager.hotels.items():
-    print(f"Hotel ID: {hotel_id}")
-    print(hotel.data)
-    # Save the processed data to a file
-    with open(f"hotel_{hotel_id}.json", "w") as file:
-        json.dump(hotel.data, file, indent=2)
+
+
+def main():
+    parser = argparse.ArgumentParser()
+    
+    num_args = len(sys.argv)
+
+    hotel_ids = None
+    destination_ids = None
+
+    if num_args > 1:
+        parser.add_argument("hotel_ids", type=str, help="Hotel IDs")
+        parser.add_argument("destination_ids", type=str, help="Destination IDs")
+        
+        # Parse the arguments
+        args = parser.parse_args()
+    
+        hotel_ids = args.hotel_ids
+        destination_ids = args.destination_ids
+    
+    if hotel_ids == 'none':
+        hotel_ids = None
+    if destination_ids == 'none':
+        destination_ids = None
+
+    hotel_ids = hotel_ids.split(",") if hotel_ids else []
+    destination_ids = destination_ids.split(",") if destination_ids else []
+    destination_ids = [int(destination_id) for destination_id in destination_ids]
+
+    manager = HotelManager("config.json", "skeleton.json")
+    manager.fetch_and_process()
+    appropriate_hotels = []
+    if hotel_ids and destination_ids:
+        appropriate_hotels = manager.get_appropriate_hotels(hotel_ids, destination_ids)
+    elif hotel_ids:
+        appropriate_hotels = manager.get_hotel_by_ids(hotel_ids)
+    elif destination_ids:
+        appropriate_hotels = manager.get_hotel_by_destination_ids(destination_ids)
+    else:
+        appropriate_hotels = manager.get_all_hotels()
+
+    # Print the appropriate hotels json
+    print(json.dumps(appropriate_hotels, indent=4))
+
+if __name__ == "__main__":
+    main()

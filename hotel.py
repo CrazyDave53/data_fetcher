@@ -10,8 +10,6 @@ class HotelData:
         self.id = raw_data.get("id")
         self.history = defaultdict(list)  # Track history for each field
         self.strategies = strategies  # Field-to-strategy mappings
-        for key, value in strategies.items():
-            print(f"Field hotel: {key}, Strategies: {value}")
         if raw_data:
             self._update(raw_data)
 
@@ -26,17 +24,11 @@ class HotelData:
             self.history[field_path].append(value)  # Track history
             strategies = self.strategies.get(field_path + '.strategy', [])
             candidates = self.history[field_path]
-            print("Field Path: ", field_path)
-            print("Candidates: ", candidates)
-            print("History: ", self.history[field_path])
-            print("Strategies: ", strategies)
-            print("Value: ", value)
 
             # Apply each strategy in sequence
             for strategy in strategies:
                 candidates = strategy.aggregate(candidates, self.history[field_path])
 
-            print("Candidates after strategy: ", candidates)
             return candidates[0] if candidates else None
 
         def traverse_and_update(current_raw, current_data, current_path):

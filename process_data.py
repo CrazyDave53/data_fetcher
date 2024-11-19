@@ -76,11 +76,8 @@ class SkeletonLoader:
     def load(cls, skeleton_path: str) -> Dict[str, Any]:
         """ Load the skeleton from a file """
         if cls._skeleton is None:
-            print("Loading skeleton from file...")
             with open(skeleton_path, 'r') as file:
                 cls._skeleton = json.load(file)
-        for key, value in cls._skeleton.items():
-            print(f"Field: {key}, Value: {value}")
         return cls._skeleton
 
     @classmethod
@@ -92,8 +89,6 @@ class SkeletonLoader:
         if cls._strategies is None:
             strategies = {}
             cls._traverse_and_collect(cls._skeleton, strategies, [])
-            for key, value in strategies.items():
-                print(f"Field: {key}, Strategies: {value}")
             cls._strategies = strategies
         return cls._strategies
 

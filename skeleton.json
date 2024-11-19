@@ -44,7 +44,7 @@
   "images": {
     "rooms": {
       "value": [{
-        "url": null,
+        "link": null,
         "description": {
           "value": null,
           "strategy": []
@@ -54,7 +54,7 @@
     },
     "site": {
       "value": [{
-        "url": null,
+        "link": null,
         "description": {
           "value": null,
           "strategy": []
@@ -64,7 +64,7 @@
     },
     "amenities": {
       "value": [{
-        "url": null,
+        "link": null,
         "description": {
           "value": null,
           "strategy": []
